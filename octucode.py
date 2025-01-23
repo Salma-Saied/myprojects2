@@ -182,3 +182,50 @@ for name in names:
 print("Abbreviated Names:")
 for x in abbreviated_names:
     print(x)
+
+
+    
+#  الحلقة ال 7 الوحدة ال 6 مشروع إنشاء كلمة سر صعبة مكونة من حروف وارقام ورموز
+
+import random
+import string
+print("Welcome to the password Generator!")
+length=int(input("Enter the total number of characters in the password: "))
+num_letters=int(input("Enter the number of letters in the password: "))
+num_numbers=int(input("Enter the number of numbers in the password: "))
+num_symbols=int(input("Enter the number of symbols in the password: "))
+if length!=(num_letters+num_numbers+num_symbols):
+    print("Invalid input. The sum of letters, numbers, and symbols doesn't match the password")
+else:
+    passowrd=[]
+    random_letters=random.choices(string.ascii_letters,k=num_letters)
+    passowrd+=random_letters
+    random_numbers=random.choices(string.digits,k=num_numbers)
+    passowrd+=random_numbers
+    random_symbols=random.choices(string.punctuation,k=num_symbols)
+    passowrd+=random_symbols
+    random.shuffle(passowrd)
+    print("Generated password: ","".join(passowrd))
+
+#   ### بطريقة اخرى او ككثر تفصيلا وترتيبا###الحلقة ال 7 الوحدة ال 6 مشروع إنشاء كلمة سر صعبة مكونة من حروف وارقام ورموز
+import random
+import string
+print("Welcome to the password Generator!")
+length=int(input("Enter the total number of characters in the password: "))
+num_letters=int(input("Enter the number of letters in the password: "))
+num_numbers=int(input("Enter the number of numbers in the password: "))
+num_symbols=int(input("Enter the number of symbols in the password: "))
+if length!=(num_letters+num_numbers+num_symbols):
+    print("Invalid input. The sum of letters, numbers, and symbols doesn't match the password")
+else:
+    letters=string.ascii_letters
+    numbers=string.digits
+    symbols=string.punctuation
+    password_chars=(
+        random.choices(letters,k=num_letters)+
+        random.choices(numbers,k=num_numbers)+
+        random.choices(symbols,k=num_symbols)
+    )
+    random.shuffle(password_chars)
+    password="".join(password_chars)
+    print("Generated password: ",password)
