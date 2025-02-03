@@ -244,3 +244,141 @@ while guess!=secret_number:
     else:
         guess=int(input("Too low! Guess again: "))
 print("Congratulations! You guessed the number!")
+
+
+#   HANGMAN GAME Unit 8 project
+HANGMANPICS = [
+    '''
++---+
+      |
+      |
+      |
+      |
+      |
+=========
+   ''',
+   '''
+               
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========
+   ''',
+   '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========
+   ''',
+   '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========
+   ''',
+   '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========
+   ''',
+   '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========
+   ''',
+   '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========
+   ''',
+   '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========
+   '''
+   ]
+
+import random
+words=["on", "sam", "near"]
+random_word=random.choice(words)
+####    عرض مسافات بنفس عدد حروف الكلمات   
+display=["_"] * len(random_word)
+print(" ".join(display))
+
+lives=6
+# طريقة اخرى
+# ascii=0 
+
+# print(HANGMANPICS[0])
+print(HANGMANPICS[6-lives])
+
+ #  قائمة لتخزين الحروف التي تم تخمينها
+guessed_letter=[]
+
+while "_" in display and lives>0:
+    guessed=input("Please guess a letter: ").lower()
+
+    # شيك لو الحرف تم تخمينه قبل وخليه يسكبه عن طريق ال continue
+    if guessed in guessed_letter:
+        print ("You already guessed that. Try again.")
+        print(f"You have {lives} more tries")
+        continue
+    
+    # في حالة لم يسبق تخمينه نضيفه للقائمة
+    guessed_letter.append(guessed)
+    
+    # اشيك لو الحرف مش موجود في الكلمة 
+    if guessed not in random_word:
+        lives-=1
+        print(HANGMANPICS[6-lives])
+
+        # طريقة اخري
+        # ascii+=1
+        # print(HANGMANPICS[ascii])
+
+### لو صحيح ((((((بدل)))))) مسافة بحرف واعرض 
+    for position in range(len(random_word)):
+        if random_word[position]==guessed:
+            display[position]=guessed
+    print(" ".join(display))
+    print(f"You have {lives} more tries")
+
+if lives ==0:
+    print("""
+           YOU LOSE
+          """)
+    print(HANGMANPICS[-1])
+
+    # او
+    # print(HANGMANPICS[6-lives])
+else:
+    print("""
+      *************
+         YOU WIN
+      *************
+""")
