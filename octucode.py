@@ -382,3 +382,70 @@ else:
          YOU WIN
       *************
 """)
+    
+
+
+
+    
+    # الوحدة 9  حلقةالاخيرة تشفير الكلمة
+
+
+# مشروع التشفير
+
+import string
+
+def encrypted (message, shift):
+    # alphabet=string.ascii_letters
+    alphabet=string.ascii_lowercase
+    encrypted_message= ""
+    for letter in message:
+        if letter.lower() in alphabet:
+        # if letter in alphabet:
+            original_position=alphabet.index(letter.lower())
+            new_position=(original_position + shift) % 26
+            encrypted_letter=alphabet[new_position]
+# نحافظ على حالة الحرف
+            if letter .isupper():
+                encrypted_letter=encrypted_letter.upper()
+                # حدي بالك من المحازاة
+            encrypted_message +=encrypted_letter
+        else:
+            encrypted_message += letter
+    print(f"Here is the encrypted message: {encrypted_message}")
+
+#   و عدد حروف الانتقال ناخد من المستخدم المسيدج
+user_message=input("type a word: ")
+user_shift=int(input("Enter ashift number: "))
+encrypted(message=user_message, shift=user_shift)
+
+
+
+
+#  ###########  حل التشفير وضع - في سطر ال new_position
+
+
+import string
+
+def decrypted (message, shift):
+    # alphabet=string.ascii_letters
+    alphabet=string.ascii_lowercase
+    decrypted_message= ""
+    for letter in message:
+        if letter.lower() in alphabet:
+        # if letter in alphabet:
+            original_position=alphabet.index(letter.lower())
+            new_position=(original_position - shift) % 26
+            decrypted_letter=alphabet[new_position]
+# نحافظ على حالة الحرف
+            if letter .isupper():
+                decrypted_letter=decrypted_letter.upper()
+                # حدي بالك من المحازاة
+            decrypted_message +=decrypted_letter
+        else:
+            decrypted_message += letter
+    print(f"Here is the original message\n*****\n\n {decrypted_message}\n\n*****")
+
+#   و عدد حروف الانتقال ناخد من المستخدم المسيدج
+user_message=input("type a word: ")
+user_shift=int(input("Enter ashift number: "))
+decrypted(message=user_message, shift=user_shift)
