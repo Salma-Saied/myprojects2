@@ -449,3 +449,73 @@ def decrypted (message, shift):
 user_message=input("type a word: ")
 user_shift=int(input("Enter ashift number: "))
 decrypted(message=user_message, shift=user_shift)
+
+
+
+
+####  Contact program (Exercise on Dictionary)
+display={}
+while True :
+    print("""
+Contact management: 
+1- Add a contact
+2- View contact
+3- Edit a contact
+4- Exist
+""")
+    user_choice=int(input("Please choose a number from 1-4: "))
+    if user_choice==1:
+        id=input("Enter the contact ID: ")
+        name=input("Please type a name: ")
+        phone=(input("Please type a Phone number: "))
+        while not phone.isdigit():
+            print("it's not a number!")
+            phone=(input("Please type a Phone number: "))
+    
+        display[id]={"name":name, "phone":phone}
+        print(f"\n{name} was added successfully")
+    elif user_choice==2:
+        print(display)
+    elif user_choice==3:
+        id_to_edit=input("Enter the ID edit: ")
+        if id_to_edit in display:
+            new_name=input("Please type a new name: ")
+            new_phone=input("Please type a new Phone number: ")
+            while not new_phone.isdigit():
+                print("it's not a number!")
+                new_phone=input("Please type a new Phone number: ")
+
+            display[id_to_edit]={"name":new_name, "phone":new_phone}
+            
+            print("success...")
+        else:
+            print("Sorry..it's not available")
+    elif user_choice==4:
+        print("exiting the program..")
+        break
+    else:
+        print("Please chose avalid choice")
+    
+###  تدريب على مسح الشاشة اي التعامل مع نظام التشغيل
+    import os
+import random
+
+def clear():
+    if os.name=="nt":
+        os.system("cls")
+    else:
+        os.system("clear")
+
+random_number=random.randint(1,10)
+
+while True:
+    clear()
+    choice=int(input("Guess number between(1-10): "))
+    if choice == random_number:
+        print("your guess is correctly.")
+        break
+    else:
+        print("wrong guess. Try again.")
+        input("\nPress any key to continue...")
+        
+
