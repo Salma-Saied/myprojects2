@@ -519,3 +519,101 @@ while True:
         input("\nPress any key to continue...")
         
 
+
+# LIBRARY CATALOG  اخر حلقة في وحدة مشروع كتالوج المكتبة
+import os
+library={}
+def clear_screen():
+    os.system("cls" if os.name == "nt" else "clear")
+
+def list():
+    print("""
+Menue:
+1. Add book
+2. Check out book
+3. Check in book
+4. List books
+5. Exist book
+""")
+
+def add_book():
+    while True:
+        clear_screen()
+        isbn=input("Enter ISBN: ")
+        title=input("Enter title: ")
+        author=input("Enter auther: ")
+        library[isbn]={"title":title, "author":author, "available":True}
+        print(f"Book '{title}' by {author} added to the catalog with ISBN {isbn}.")
+        choice=input("Do you want to add another book? (y/n): ")
+        if choice.lower() != "y":
+            break
+       
+def check_out():
+    while True:
+        clear_screen()
+        isbn=input("Enter ISBN to check out: ")
+        if isbn in library:
+             if library[isbn]["available"]:
+                  library[isbn]["available"] = False
+                  print(f"Book '{library[isbn]["title"]}' checked out successfully.")
+             else:
+                  print("Sorry, the book is currently checked out.")
+        else:
+             print("Book not found in the catalog.")
+        choice= input ("Do you want to check out another book? (y/n): ")
+        if choice.lower() !="y":
+             break
+              
+def check_in():
+     while True:
+        clear_screen()
+        isbn=input("Enter ISBN to check out: ")  
+        if isbn in library: 
+             if not library[isbn]["available"]:
+                  library[isbn]["available"] = True
+                  print(f"Book '{library[isbn]["title"]}' checked in successfully.")
+             else:
+                  print("The book is already available in the library")
+        else:
+             print("Book is not found in the catalog")
+        choice= input ("Do you want to check in another book? (y/n): ")
+        if choice.lower() !="y":
+                break
+             
+def list_books():
+     while True:  
+          clear_screen()
+          print(f"\nLibrary:")
+          for isbn in library:
+               book_info=library[isbn]
+               print(
+                    f"ISBN: {isbn}, Title:{book_info["title"]}, Author:{book_info["author"]}, Available:
+                     {book_info["available"]} "
+               )
+          choice= input ("Do you want to go back to the main menue'? (y/n): ")
+          if choice.lower() =="y":
+                break
+
+               
+while True:
+    list()
+    choice=input("Enter your choice (1-5):")
+    if choice == "1":
+         add_book()
+
+    elif choice == "2":
+         check_out()
+        
+    elif choice == "3":
+         check_in()
+        
+    elif choice == "4":
+         list_books()
+
+    elif choice == "5":
+         print("Existing the program.")
+         break
+    else:
+         print("Invalid choice. Please enter a number between 1 and 5.")
+
+
